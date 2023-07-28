@@ -1,5 +1,5 @@
-const mysql = require('mysql2/promise');
-const inquirer = require('inquirer');
+import inquirer from 'inquirer';
+import mysql from 'mysql2/promise';
 
 // establish database connection
 let connection;
@@ -8,7 +8,7 @@ const initDBConnection = async () => {
   connection = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'yourpassword',
+    password: 'EM-912_70p',
     database: 'employee_db'
   });
 };

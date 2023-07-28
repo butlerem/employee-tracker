@@ -1,4 +1,7 @@
 {
+  "name": "your-package",
+  "version": "1.0.0",
+  "type": "module",
   "dependencies": {
     "inquirer": "^9.2.8",
     "mysql2": "^3.5.2"
