@@ -1,9 +1,8 @@
-CREATE DATABASE IF NOT EXISTS employee_db;
 USE employee_db;
 
 CREATE TABLE department (
-        id INT PRIMARY KEY AUTO-INCREMENT,
-        name VARCHAR(30) NOT NULL  
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL  
 );
 
 CREATE TABLE role (
@@ -20,6 +19,10 @@ CREATE TABLE employee (
     last_name VARCHAR(30) NOT NULL,
     role_id INT,
     manager_id INT,
-    FOREIGN KEY (role_id) REFERENCES role(id),
-    FOREIGN KEY (manager_id) REFERENCES employee(id)
+    FOREIGN KEY (role_id) REFERENCES role(id)
 );
+
+ALTER TABLE employee 
+ADD CONSTRAINT employee_manager_fk 
+FOREIGN KEY (manager_id) REFERENCES employee(id);
+
