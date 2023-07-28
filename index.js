@@ -43,6 +43,81 @@ const addDepartment = async () => {
   mainMenu();
 };
 
+const addRole = async () => {
+    const role = await inquirer.prompt([
+      {
+        name: 'title',
+        type: 'input',
+        message: 'What is the title of the role?',
+      },
+      {
+        name: 'salary',
+        type: 'input',
+        message: 'What is the salary of the role?',
+      },
+      {
+        name: 'department_id',
+        type: 'input',
+        message: 'What is the ID of the department this role belongs to?',
+      }
+    ]);
+  
+    await connection.query('INSERT INTO role SET ?', role);
+    console.log('Role added successfully!');
+    mainMenu();
+  };
+  
+  const addEmployee = async () => {
+    const employee = await inquirer.prompt([
+      {
+        name: 'first_name',
+        type: 'input',
+        message: 'What is the first name of the employee?',
+      },
+      {
+        name: 'last_name',
+        type: 'input',
+        message: 'What is the last name of the employee?',
+      },
+      {
+        name: 'role_id',
+        type: 'input',
+        message: 'What is the ID of the role this employee has?',
+      },
+      {
+        name: 'manager_id',
+        type: 'input',
+        message: 'What is the ID of the manager this employee reports to?',
+      }
+    ]);
+  
+    await connection.query('INSERT INTO employee SET ?', employee);
+    console.log('Employee added successfully!');
+    mainMenu();
+  };
+  
+  const updateEmployeeRole = async () => {
+    // Get employee details
+    const employee = await inquirer.prompt([
+      {
+        name: 'employee_id',
+        type: 'input',
+        message: 'Please enter the ID of the employee you want to update?',
+      },
+      {
+        name: 'new_role_id',
+        type: 'input',
+        message: 'Please enter the ID of the new role?',
+      }
+    ]);
+  
+    // Query to update the employee role
+    await connection.query('UPDATE employee SET role_id = ? WHERE id = ?', [employee.new_role_id, employee.employee_id]);
+    console.log('Employee role updated successfully!');
+    mainMenu();
+  };
+  
+
 const mainMenu = () => {
   inquirer
     .prompt({
